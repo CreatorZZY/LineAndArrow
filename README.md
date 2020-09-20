@@ -49,6 +49,9 @@ Add File named lineandarrow.wsgi:
 ```
 import sys
 sys.path.insert(0, 'Path_to_the_folder_of_server.py')
+from server import path_to_exe
+
+path_to_exe = '/Path_to_LineAndArrow/LineAndArrow.exe'
 from server import app as application
 ```
 
