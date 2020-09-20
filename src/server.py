@@ -34,7 +34,7 @@ app = Flask(__name__)
 CORS(app, resources=r'/*')
 
 
-@app.route('/LindAndArrow')
+@app.route('/LineAndArrow')
 def LindAndArrow():
     try:
         data = base64.b64decode(request.args['Data']).decode("utf-8")
