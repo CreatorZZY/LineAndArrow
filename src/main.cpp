@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-20 22:21:35
+ * @LastEditTime: 2020-09-21 00:09:26
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -68,9 +68,6 @@ int main(int argc, char** argv)
     cmdconfig.parse_check(argc, argv);
     all_path = initFolder(cmdconfig.get<std::string>("tmppath"), cmdconfig.get<std::string>("datapath"));
 
-    std::filesystem::path stra(all_path["OutImg"]);
-    if (std::filesystem::exists(stra) == false)
-        std::filesystem::create_directory(stra);
     cr::cairo_surface_t* surfacepng = cr::cairo_image_surface_create(cr::CAIRO_FORMAT_ARGB32, SDK_Draw::PageW, SDK_Draw::PageH);
 
     std::string filemane = std::string(cmdconfig.get<std::string>("output"));
