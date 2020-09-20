@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 @LastEditors: George Zhao
-@LastEditTime: 2020-09-20 22:12:55
+@LastEditTime: 2020-09-20 22:33:17
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -45,7 +45,7 @@ def LindAndArrow():
         with open("./tmp/{}.data".format(filename), "w+") as f:
             f.write(data)
         os.system(
-            "{pathtoexe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o {filename}".format(pathtoexe=path_to_exe, filename=filename))
+            "{pathtoexe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename}".format(pathtoexe=path_to_exe, filename=filename))
         svgdata = str()
         with open("./out/img/{}.svg".format(filename)) as f:
             svgdata = f.read()

@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-20 21:18:54
+ * @LastEditTime: 2020-09-20 22:21:35
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -28,7 +28,6 @@ auto initFolder(const std::string& tmp_dirpath = "./", const std::string& data_d
     ph_of_dir["setting"] = data_dirpath + "/setting/";
     ph_of_dir["out"] = data_dirpath + "/out/";
     ph_of_dir["tmp"] = tmp_dirpath + "/tmp/";
-    ph_of_dir["OutImg"] = ph_of_dir["out"] + "/img/";
 
     for (auto& i : ph_of_dir) {
         if (std::filesystem::exists(std::filesystem::path(i.second)) == false) {
@@ -64,8 +63,8 @@ int main(int argc, char** argv)
     cmdconfig.add<std::string>("output", 'o', "Name of Output.", true);
     cmdconfig.add("stdout", 's', "Print SVG in STDOUT.");
 
-    cmdconfig.add<std::string>("datapath", '\000', "Get rsa Key", false, "./");
-    cmdconfig.add<std::string>("tmppath", '\000', "Get rsa Key", false, "./");
+    cmdconfig.add<std::string>("datapath", '\000', "Work Path", false, "./");
+    cmdconfig.add<std::string>("tmppath", '\000', "Tmp Path", false, "./");
     cmdconfig.parse_check(argc, argv);
     all_path = initFolder(cmdconfig.get<std::string>("tmppath"), cmdconfig.get<std::string>("datapath"));
 
@@ -74,7 +73,7 @@ int main(int argc, char** argv)
         std::filesystem::create_directory(stra);
     cr::cairo_surface_t* surfacepng = cr::cairo_image_surface_create(cr::CAIRO_FORMAT_ARGB32, SDK_Draw::PageW, SDK_Draw::PageH);
 
-    std::string filemane = std::string(all_path["OutImg"]) + cmdconfig.get<std::string>("output");
+    std::string filemane = std::string(cmdconfig.get<std::string>("output"));
     cr::cairo_surface_t* surfacepdf = cr::cairo_pdf_surface_create((filemane + ".pdf").c_str(), SDK_Draw::PageW, SDK_Draw::PageH);
     cr::cairo_surface_t* surfacesvg = cr::cairo_svg_surface_create((filemane + ".svg").c_str(), SDK_Draw::PageW, SDK_Draw::PageH);
 
