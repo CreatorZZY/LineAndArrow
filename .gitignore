@@ -1,6 +1,8 @@
-build
+build*
 img
 *.txt
 !CMakeLists.txt
 *.json
 .vscode
+tmp
+out
