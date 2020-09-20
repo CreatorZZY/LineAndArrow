@@ -1,18 +1,8 @@
 '''
 @Author: George Zhao
-@Date: 2020-09-20 20:20:33
-@LastEditors: George Zhao
-@LastEditTime: 2020-09-20 21:06:14
-@Description: 
-@Email: 2018221138@email.szu.edu.cn
-@Company: SZU
-@Version: 1.0
-'''
-'''
-@Author: George Zhao
 @Date: 2020-03-20 15:54:19
 @LastEditors: George Zhao
-@LastEditTime: 2020-03-20 21:13:00
+@LastEditTime: 2020-09-20 22:12:55
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -30,10 +20,8 @@ import base64
 
 import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-e', type=str, help='Path to LineAndArrow.')
-parser.add_argument('--port', type=int, help='Port', default=8080)
-args = parser.parse_args()
+Port = 8080
+path_to_exe = ""
 
 if os.path.exists("./out/") == False:
     os.mkdir("./out/")
@@ -57,7 +45,7 @@ def LindAndArrow():
         with open("./tmp/{}.data".format(filename), "w+") as f:
             f.write(data)
         os.system(
-            "{pathtoexe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o {filename}".format(pathtoexe=args.e, filename=filename))
+            "{pathtoexe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o {filename}".format(pathtoexe=path_to_exe, filename=filename))
         svgdata = str()
         with open("./out/img/{}.svg".format(filename)) as f:
             svgdata = f.read()
@@ -78,5 +66,11 @@ def cors_response(res):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', type=str, help='Path to LineAndArrow.')
+    parser.add_argument('--port', type=int, help='Port', default=Port)
+    args = parser.parse_args()
+    path_to_exe = args.e
+    Port = args.port
     app.config['JSON_AS_ASCII'] = False
-    app.run(host='0.0.0.0', port=args.port, debug=False)
+    app.run(host='0.0.0.0', port=Port, debug=False)
