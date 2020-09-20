@@ -3,6 +3,14 @@ LineAndArrow
 
 Describe the project here.
 
+# Build the Project
+```shell
+mkdir build
+cd build
+cmake -DCMAKE_C_COMPILRE=gcc-10 -DCMAKE_CXX_COMPILRE=g++-10 ..
+make -j
+```
+
 # Command Line Args
 ## LineAndArrow
 ```
