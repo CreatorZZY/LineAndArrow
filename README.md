@@ -7,7 +7,7 @@ Describe the project here.
 ```shell
 mkdir build
 cd build
-cmake -DCMAKE_C_COMPILRE=gcc-10 -DCMAKE_CXX_COMPILRE=g++-10 ..
+cmake -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 ..
 make -j
 ```
 
