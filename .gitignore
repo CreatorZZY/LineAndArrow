@@ -1,0 +1,6 @@
+build
+img
+*.txt
+!CMakeLists.txt
+*.json
+.vscode
