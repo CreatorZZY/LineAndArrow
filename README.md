@@ -66,5 +66,7 @@ sudo service apache2 restart
 And Then visit: `http://YourAddr:YourPort/LineAndArrow?Data=YourBase64CodeData`
 
 # Format 
+```
 geneName    complement(3668847..3668981)	#FF0000
 geneName    3668847..3668981	#FF0000
+```
