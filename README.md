@@ -42,7 +42,7 @@ optional arguments:
 python3.8 -W ignore -u server.py --port 8080 -e ./LineAndArrow.exe
 ```
 
-And Then visit: `http://YourAddr:YourPort/LineAndArrow?Data=YourBase64CodeData`
+And Then visit: `http://YourAddr:YourPort/LineAndArrow?D=1&Data=YourBase64CodeData`
 
 ### Wsgi Mode
 Add File named lineandarrow.wsgi:
@@ -74,7 +74,7 @@ Restart Your Apache2 server
 sudo service apache2 restart
 ```
 
-And Then visit: `http://YourAddr:YourPort/LineAndArrow?Data=YourBase64CodeData`
+And Then visit: `http://YourAddr:YourPort/LineAndArrow?D=1&Data=YourBase64CodeData`
 
 # Format 
 ```
