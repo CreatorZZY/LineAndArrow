@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 @LastEditors: George Zhao
-@LastEditTime: 2020-09-24 21:02:31
+@LastEditTime: 2020-09-24 21:07:46
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -59,7 +59,7 @@ def LindAndArrow():
         os.remove("./tmp/{}.data".format(filename))
         if request.args['D'] == '1':
             resp = make_response(svgdata)
-            resp.headers["Content-Disposition"] = "Content-Disposition: attachment; filename={}.svg".format(
+            resp.headers["Content-Disposition"] = "attachment; filename={}.svg".format(
                 filename)
             return resp
         else:
