@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 @LastEditors: George Zhao
-@LastEditTime: 2020-09-20 22:33:17
+@LastEditTime: 2020-09-24 21:02:31
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -34,6 +34,12 @@ app = Flask(__name__)
 CORS(app, resources=r'/*')
 
 
+@app.route("/")
+def index_page():
+    with open("lib/index.html") as f:
+        return f.read()
+
+
 @app.route('/LineAndArrow')
 def LindAndArrow():
     try:
@@ -51,10 +57,16 @@ def LindAndArrow():
             svgdata = f.read()
         os.remove("./out/img/{}.svg".format(filename))
         os.remove("./tmp/{}.data".format(filename))
-        return str(svgdata)
+        if request.args['D'] == '1':
+            resp = make_response(svgdata)
+            resp.headers["Content-Disposition"] = "Content-Disposition: attachment; filename={}.svg".format(
+                filename)
+            return resp
+        else:
+            return str(svgdata)
     except BaseException as e:
         print(e)
-        return e + "Sorry, Error. May Check Your Input."
+        return str(e) + "Sorry, Error. May Check Your Input."
 
 
 def cors_response(res):

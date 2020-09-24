@@ -9,14 +9,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(BUILD_SHARED_LIBS ON)
+set(BUILD_SHARED_LIBS OFF)
 
 # ~ Complie Flags
 ## ~ CPP
-set(CMAKE_CXX_FLAGS "-std=c++17 -g -fPIC -Wall -Wno-unused-const-variable" ${CMAKE_CXX_FLAGS})
+set(CMAKE_CXX_FLAGS "-std=c++2a -g -fPIC -Wall -Wno-unused-const-variable" ${CMAKE_CXX_FLAGS})
 # add_definitions(-g)
 ## ~ C
-set(CMAKE_C_FLAGS  ${CMAKE_C_FLAGS})
+set(CMAKE_C_FLAGS "-std=c18 -g -fPIC -Wall -Wno-unused-const-variable" ${CMAKE_C_FLAGS})
 
 # ~ Globe Library Path
 ## ~ 1

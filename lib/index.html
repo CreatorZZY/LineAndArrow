@@ -1,0 +1,132 @@
+<!--
+ * @Author: George Zhao
+ * @Date: 2020-09-24 19:32:44
+ * @LastEditors: George Zhao
+ * @LastEditTime: 2020-09-24 20:30:12
+ * @Description: 
+ * @Email: 2018221138@email.szu.edu.cn
+ * @Company: SZU
+ * @Version: 1.0
+-->
+<!--
+ * @Author: George Zhao
+ * @Date: 2020-09-23 20:50:11
+ * @LastEditors: George Zhao
+ * @LastEditTime: 2020-09-23 23:27:36
+ * @Description: 
+ * @Email: 2018221138@email.szu.edu.cn
+ * @Company: SZU
+ * @Version: 1.0
+-->
+<html>
+  <head>
+    <style></style>
+  </head>
+  <body>
+    <center>
+      <div class="main">
+        <form action="LineAndArrow" method="GET">
+          <div>
+            <table
+              border="2"
+              style="width: 88%; height: 88%; table-layout: auto;"
+            >
+              <caption>
+                <h1>LineAndArrow</h1>
+              </caption>
+              <tr>
+                <th>Input Box</th>
+                <th>Result Box</th>
+              </tr>
+              <tr style="width: 100%; height: 100%;">
+                <td>
+                  <div style="width: 100%; height: 100%;">
+                    <center>
+                      <textarea
+                        style="width: 100%; height: 100%; resize: vertical;"
+                        id="rdata"
+                        onblur="submit_and_('0')"
+                      ></textarea>
+                    </center>
+                  </div>
+                </td>
+                <td rowspan="8">
+                  <iframe
+                    style="height: 100%; width: 100%;"
+                    src=""
+                    id="resultBox"
+                  >
+                  </iframe>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <center>
+                      <input
+                        type="button"
+                        value="Submit"
+                        tabindex="3"
+                        onclick="submit_and_('0')"
+                      />
+                    </center>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <center>
+                      <input
+                        type="button"
+                        value="Save"
+                        tabindex="4"
+                        onclick="submit_and_('1')"
+                      />
+                    </center>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div>
+                    <center>
+                      <input
+                        type="button"
+                        value="Clean"
+                        tabindex="5"
+                        onclick="clean_result()"
+                      />
+                    </center>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </form>
+      </div>
+    </center>
+    <script>
+      function submit_and_(d) {
+        if (document.getElementById("rdata").value == "") {
+          return;
+        }
+        iframe_refeash(
+          "LineAndArrow?D=" +
+            d +
+            "&Data=" +
+            window.btoa(document.getElementById("rdata").value)
+        );
+      }
+
+      function clean_result() {
+        document.getElementById("rdata").value = "";
+        iframe_refeash("");
+      }
+
+      function iframe_refeash(_url) {
+        document.getElementById("resultBox").src = _url;
+      }
+    </script>
+  </body>
+</html>

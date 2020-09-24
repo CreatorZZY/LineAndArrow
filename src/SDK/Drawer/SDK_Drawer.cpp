@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-03-19 16:03:41
+ * @LastEditTime: 2020-09-21 13:13:14
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -14,6 +14,8 @@
 #include <stdexcept>
 
 namespace SDK_Draw {
+
+std::function<bool(const double, const double)> UpandDown = [](const double s, const double e) -> bool { return s < e ? true : false; };
 
 void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Core::SIZE2D& pagesize, const char* context, const double linewidth, const bool upAndDpwn)
 {
