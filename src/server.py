@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 @LastEditors: George Zhao
-@LastEditTime: 2020-09-24 21:07:46
+@LastEditTime: 2020-09-24 21:58:56
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -53,9 +53,16 @@ def LindAndArrow():
         os.system(
             "{pathtoexe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename}".format(pathtoexe=path_to_exe, filename=filename))
         svgdata = str()
+        pngdata = str()
+        if os.path.exists("./out/img/{}.svg".format(filename)) == False:
+            return "Sorry, Error. May Check Your Input."
         with open("./out/img/{}.svg".format(filename)) as f:
             svgdata = f.read()
+        with open("./out/img/{}.png".format(filename), 'rb') as f:
+            pngdata = f.read()
+
         os.remove("./out/img/{}.svg".format(filename))
+        os.remove("./out/img/{}.pdf".format(filename))
         os.remove("./tmp/{}.data".format(filename))
         if request.args['D'] == '1':
             resp = make_response(svgdata)
@@ -63,7 +70,7 @@ def LindAndArrow():
                 filename)
             return resp
         else:
-            return str(svgdata)
+            return "<img src=\"data:image/png;base64,{}\" style=\"width: 100%; height: 100%;\"/>".format(base64.b64encode(pngdata).decode('utf-8'))
     except BaseException as e:
         print(e)
         return str(e) + "Sorry, Error. May Check Your Input."

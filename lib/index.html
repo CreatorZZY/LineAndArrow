@@ -2,17 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-09-24 19:32:44
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-24 20:30:12
- * @Description: 
- * @Email: 2018221138@email.szu.edu.cn
- * @Company: SZU
- * @Version: 1.0
--->
-<!--
- * @Author: George Zhao
- * @Date: 2020-09-23 20:50:11
- * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-23 23:27:36
+ * @LastEditTime: 2020-09-24 22:00:48
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -20,6 +10,16 @@
 -->
 <html>
   <head>
+    <title>LineAndArrow</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="theme-color" content="#1e1e1e" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
     <style></style>
   </head>
   <body>
@@ -35,8 +35,10 @@
                 <h1>LineAndArrow</h1>
               </caption>
               <tr>
-                <th>Input Box</th>
-                <th>Result Box</th>
+                <th id="inputtitle">Input Box</th>
+                <th id="resulttitle">
+                  Result Preview
+                </th>
               </tr>
               <tr style="width: 100%; height: 100%;">
                 <td>
@@ -79,7 +81,7 @@
                     <center>
                       <input
                         type="button"
-                        value="Save"
+                        value="Save Svg"
                         tabindex="4"
                         onclick="submit_and_('1')"
                       />
@@ -117,6 +119,14 @@
             "&Data=" +
             window.btoa(document.getElementById("rdata").value)
         );
+        document.getElementById("inputtitle").style =
+          "background-color: #366e9c;";
+        document.getElementById("resulttitle").style =
+          "background-color: #366e9c;";
+        setInterval(function () {
+          document.getElementById("inputtitle").style = "";
+          document.getElementById("resulttitle").style = "";
+        }, 500);
       }
 
       function clean_result() {
