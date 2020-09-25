@@ -48,7 +48,9 @@ And Then visit: `http://YourAddr:YourPort/LineAndArrow?D=1&Data=YourBase64CodeDa
 Add File named lineandarrow.wsgi:
 ```
 import sys
-sys.path.insert(0, 'Path_to_the_folder_of_server.py')
+import os
+sys.path.insert(0, 'Path_to_the_folder_of_server/src')
+os.chdir('/home/georgezhao/Source/Project/LineAndArrow')
 from server import path_to_exe
 
 path_to_exe = '/Path_to_LineAndArrow/LineAndArrow.exe'
