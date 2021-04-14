@@ -1,7 +1,13 @@
 LineAndArrow
 ===
 
-Describe the project here.
+![HomePAGE](img/HomePAGE.png)
+
+# Docker
+```shell
+docker build -t georgezhao/landa:1.0 .
+docker run -d -p 1080:1080 georgezhao/landa:1.0
+```
 
 # Build the Project
 ```shell

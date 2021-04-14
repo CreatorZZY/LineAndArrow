@@ -1,5 +1,4 @@
 build*
-img
 *.txt
 !CMakeLists.txt
 *.json
