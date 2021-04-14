@@ -12,7 +12,7 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y libcairo2-dev
 
 RUN pip3 install flask
-RUN pip3 install flask-cors
+RUN pip3 install flask_cors
 
 WORKDIR /root
 RUN git clone https://github.com/CreatorZZY/LineAndArrow.git
