@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-18 11:37:51
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-03-20 17:25:57
+ * @LastEditTime: 2021-04-29 13:01:02
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -69,7 +69,7 @@ std::vector<pdata> normalize_data(const std::vector<fdata>& thefdata)
 
 // ^([A-Za-z0-9]+)\s+([A-Za-z]*)\(*\s*(\d+)..(\d+)\s*\)*\s+(\w*)$
 const SDK_Core::RGB& defaultArrowcolor = SDK_Core::NormalColor::GREEN;
-const std::regex regex("([A-Za-z0-9]+)\\s+([A-Za-z]*)\\(*\\s*(\\d+)..(\\d+)\\s*\\)*\\s+([#A-Za-z0-9]*)\\r*");
+const std::regex regex("(.+)\\s+([A-Za-z]*)\\(*\\s*(\\d+)..(\\d+)\\s*\\)*\\s+([#A-Za-z0-9]*)\\r*");
 SDK_Core::RGB changeCharToRGB(const char* text)
 {
     if (text[0] != '#')
