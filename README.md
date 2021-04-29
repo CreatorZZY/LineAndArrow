@@ -3,21 +3,41 @@ LineAndArrow
 
 ![HomePAGE](img/HomePAGE.png)
 
-# Docker
+# Input Format
+```
+geneName    complement(3668847..3668981)	#FF0000
+geneName    3668847..3668981	#FF0000
+```
+Note that we pre-define some Color. We can use the word listed follow to access.
+
+1. red
+2. blue
+3. green
+4. black
+5. white
+6. purple
+7. brown
+8. skyblue
+9. pink
+
+```
+geneName    complement(3668847..3668981)	purple
+geneName    3668847..3668981	pink
+```
+
+# Usage
+## Docker Images
 ```shell
 docker build -t georgezhao/landa:1.0 .
 docker run -d -p 1080:1080 georgezhao/landa:1.0
 ```
-
-# Build the Project
+## Build the Project
 ```shell
 mkdir build
 cd build
 cmake -DCMAKE_C_COMPILER=gcc-10 -DCMAKE_CXX_COMPILER=g++-10 ..
 make -j
 ```
-
-# Command Line Args
 ## LineAndArrow
 ```
 usage: LineAndArrow --input=string --output=string [options] ...
@@ -83,9 +103,3 @@ sudo service apache2 restart
 ```
 
 And Then visit: `http://YourAddr:YourPort/LineAndArrow?D=1&Data=YourBase64CodeData`
-
-# Format 
-```
-geneName    complement(3668847..3668981)	#FF0000
-geneName    3668847..3668981	#FF0000
-```
