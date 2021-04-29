@@ -6,7 +6,7 @@ LineAndArrow
 # Input Format
 ```
 geneName    complement(3668847..3668981)	#FF0000
-geneName    3668847..3668981	#FF0000
+geneName    3668847..3668981	#00FF00
 ```
 Note that we pre-define some Color. We can use the word listed follow to access.
 
