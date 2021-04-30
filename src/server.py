@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 LastEditors: George Zhao
-LastEditTime: 2021-04-30 13:44:22
+LastEditTime: 2021-04-30 18:47:43
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -43,6 +43,8 @@ def index_page():
 
 @app.route("/<path:filename>")
 def index_page_file(filename):
+    if filename == 'favicon.ico':
+        filename = 'assets/' + filename
     return send_from_directory(libpath, filename, as_attachment=False)
 
 
@@ -87,7 +89,7 @@ def LindAndArrow():
             return "<img src=\"data:image/png;base64,{}\" style=\"width: 100%; height: 100%;\"/>".format(base64.b64encode(pngdata).decode('utf-8'))
     except BaseException as e:
         print(e)
-        return str(e) + "Sorry, Error. May Check Your Input."
+        return "Sorry, Error. May Check Your Input.\nError Code: \n" + str(e)
 
 
 def cors_response(res):
