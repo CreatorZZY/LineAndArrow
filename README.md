@@ -1,7 +1,7 @@
 LineAndArrow
 ===
 
-![HomePAGE](img/HomePAGE.png)
+![HomePAGE](lib/img/HomePAGE.png)
 
 # Input Format
 ```

@@ -1,15 +1,15 @@
 '''
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
-@LastEditors: George Zhao
-@LastEditTime: 2020-09-24 21:58:56
+LastEditors: George Zhao
+LastEditTime: 2021-04-30 13:44:22
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
 @Version: 1.0
 '''
 from flask import abort, jsonify, Flask, request, Response
-from flask import make_response
+from flask import make_response, send_from_directory
 import datetime
 from flask_cors import CORS
 import hashlib
@@ -33,11 +33,17 @@ if os.path.exists("./tmp/") == False:
 app = Flask(__name__)
 CORS(app, resources=r'/*')
 
+libpath = os.path.join(os.path.abspath('.'), 'lib')
+
 
 @app.route("/")
 def index_page():
-    with open("lib/index.html") as f:
-        return f.read()
+    return send_from_directory(libpath, 'index.html', as_attachment=False)
+
+
+@app.route("/<path:filename>")
+def index_page_file(filename):
+    return send_from_directory(libpath, filename, as_attachment=False)
 
 
 @app.route('/LineAndArrow')
@@ -61,12 +67,20 @@ def LindAndArrow():
         with open("./out/img/{}.png".format(filename), 'rb') as f:
             pngdata = f.read()
 
+        with open("./out/img/{}.pdf".format(filename), 'rb') as f:
+            pdfdata = f.read()
+
         os.remove("./out/img/{}.svg".format(filename))
         os.remove("./out/img/{}.pdf".format(filename))
         os.remove("./tmp/{}.data".format(filename))
         if request.args['D'] == '1':
             resp = make_response(svgdata)
             resp.headers["Content-Disposition"] = "attachment; filename={}.svg".format(
+                filename)
+            return resp
+        if request.args['D'] == '2':
+            resp = make_response(pdfdata)
+            resp.headers["Content-Disposition"] = "attachment; filename={}.pdf".format(
                 filename)
             return resp
         else:

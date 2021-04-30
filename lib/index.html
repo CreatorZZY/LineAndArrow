@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-09-24 19:32:44
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-04-15 13:09:29
+ * @LastEditTime: 2021-04-30 13:48:30
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -66,7 +66,11 @@
               <td>
                 <div>
                   <center>
-                    <input type="button" value="Save Svg" tabindex="4" onclick="submit_and_('1')" />
+                    Save
+                    <span> </span>
+                    <input type="button" value="Svg" tabindex="4" onclick="submit_and_('1')" />
+                    <span> or </span>
+                    <input type="button" value="Pdf" tabindex="5" onclick="submit_and_('2')" />
                   </center>
                 </div>
               </td>
@@ -75,7 +79,16 @@
               <td>
                 <div>
                   <center>
-                    <input type="button" value="Clean" tabindex="5" onclick="clean_result()" />
+                    <input type="button" value="Clean" tabindex="6" onclick="clean_result()" />
+                  </center>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>
+                  <center>
+                    <input type="button" value="Get Help" tabindex="7" onclick="gethelp()" />
                   </center>
                 </div>
               </td>
@@ -104,6 +117,12 @@
         document.getElementById("inputtitle").style = "";
         document.getElementById("resulttitle").style = "";
       }, 500);
+    }
+
+    function gethelp(params) {
+      window.open('help.html', 'Cook Book',
+        "height=750,width=650,toolbar = no, menubar = no,scrollbars = no, resizable = no, location = no, status = no"
+      )
     }
 
     function clean_result() {
