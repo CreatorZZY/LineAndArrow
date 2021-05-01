@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 LastEditors: George Zhao
-LastEditTime: 2021-04-30 18:47:43
+LastEditTime: 2021-05-01 10:36:22
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -74,6 +74,7 @@ def LindAndArrow():
 
         os.remove("./out/img/{}.svg".format(filename))
         os.remove("./out/img/{}.pdf".format(filename))
+        os.remove("./out/img/{}.png".format(filename))
         os.remove("./tmp/{}.data".format(filename))
         if request.args['D'] == '1':
             resp = make_response(svgdata)
