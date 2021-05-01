@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-21 13:13:14
+ * @LastEditTime: 2021-05-01 10:53:20
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -24,7 +24,7 @@ void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Cor
     cr::cairo_set_line_width(pan, annotate_line_w);
     cr::cairo_set_source_rgb(pan, annotate_line_color.R, annotate_line_color.G, annotate_line_color.B);
 
-    cr::cairo_select_font_face(pan, "msyh", cr::CAIRO_FONT_SLANT_NORMAL, cr::CAIRO_FONT_WEIGHT_NORMAL);
+    cr::cairo_select_font_face(pan, "Sans", cr::CAIRO_FONT_SLANT_NORMAL, cr::CAIRO_FONT_WEIGHT_NORMAL);
     cr::cairo_set_font_size(pan, annotate_font_size);
 
     cr::cairo_text_extents_t extents;
