@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-05-03 13:48:50
+ * @LastEditTime: 2021-05-03 23:04:54
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -62,11 +62,13 @@ int main(int argc, char** argv)
     cmdconfig.add<std::string>("input", 'i', "Path to Input File", true);
     cmdconfig.add<std::string>("output", 'o', "Name of Output.", true);
     cmdconfig.add<double>("width", 'w', "Width Of the Arrow", false, 20.0);
+    cmdconfig.add<double>("fontsize", 'f', "Size Of the Font", false, SDK_Draw::annotate_font_size);
     cmdconfig.add("stdout", 's', "Print SVG in STDOUT.");
 
     cmdconfig.add<std::string>("datapath", '\000', "Work Path", false, "./");
     cmdconfig.add<std::string>("tmppath", '\000', "Tmp Path", false, "./");
     cmdconfig.parse_check(argc, argv);
+    SDK_Draw::annotate_font_size = cmdconfig.get<double>("fontsize");
     all_path = initFolder(cmdconfig.get<std::string>("tmppath"), cmdconfig.get<std::string>("datapath"));
 
     cr::cairo_surface_t* surfacepng = cr::cairo_image_surface_create(cr::CAIRO_FORMAT_ARGB32, SDK_Draw::PageW, SDK_Draw::PageH);

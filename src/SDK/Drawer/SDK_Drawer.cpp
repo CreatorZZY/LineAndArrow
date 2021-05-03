@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-05-03 14:18:10
+ * @LastEditTime: 2021-05-03 22:50:33
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -15,6 +15,8 @@
 
 namespace SDK_Draw {
 
+double annotate_font_size = 20;
+
 std::function<bool(const double, const double)> UpandDown = [](const double s, const double e) -> bool { return s < e ? true : false; };
 
 void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Core::SIZE2D& pagesize, const char* context, const double linewidth, const bool upAndDpwn)
@@ -24,7 +26,7 @@ void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Cor
     cr::cairo_set_line_width(pan, annotate_line_w);
     cr::cairo_set_source_rgb(pan, annotate_line_color.R, annotate_line_color.G, annotate_line_color.B);
 
-    cr::cairo_select_font_face(pan, "Sans", cr::CAIRO_FONT_SLANT_NORMAL, cr::CAIRO_FONT_WEIGHT_NORMAL);
+    cr::cairo_select_font_face(pan, "Sans", cr::CAIRO_FONT_SLANT_NORMAL, cr::CAIRO_FONT_WEIGHT_BOLD);
     cr::cairo_set_font_size(pan, annotate_font_size);
 
     cr::cairo_text_extents_t extents;
@@ -33,9 +35,9 @@ void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Cor
     SDK_Core::POINT2D vector;
     // Right
     if (upAndDpwn == false) { // Left
-        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, annotate_font_line_gap + 1.5 * linewidth + arrow_line_gap - extents.y_bearing };
+        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, annotate_font_line_gap + 1.5 * linewidth + arrow_line_gap + 2 * extents.height };
     } else {
-        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, 0.0 - annotate_font_line_gap - arrow_line_gap - 1.0 * linewidth - extents.y_bearing };
+        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, 0.0 - annotate_font_line_gap - 0.5 * linewidth - extents.height };
     }
 
     cr::cairo_set_source_rgb(pan, annotate_text_color.R, annotate_text_color.G, annotate_text_color.B);
@@ -56,7 +58,7 @@ void arrow(cr::cairo_surface_t* surface, const double& startPresent, const doubl
     }
 
     cr::cairo_set_line_cap(pan, cr::CAIRO_LINE_CAP_ROUND);
-    SDK_Core::POINT2D point = { gap + (startPresent) * (pagesize.W - 2 * gap), pagesize.H / 2 + upline * (arrow_line_gap + ArrowWirth / 2) + ArrowWirth / 2 };
+    SDK_Core::POINT2D point = { gap + (startPresent) * (pagesize.W - 2 * gap), pagesize.H / 2 + upline * (arrow_line_gap + ArrowWirth) + ArrowWirth / 2 };
     cr::cairo_move_to(pan, point.X, point.Y);
 
     if (un * (endPresent - startPresent) * (pagesize.W - 2 * gap) <= (ArrowWirth / 2)) {

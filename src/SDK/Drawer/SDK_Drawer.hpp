@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-17 18:37:35
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-21 13:12:32
+ * @LastEditTime: 2021-05-03 23:03:57
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -35,7 +35,7 @@ const double arrow_line_gap = 20;
 // Anontate
 const double annotate_line_w = 5;
 const double annotate_line_H = 10;
-const double annotate_font_size = 20;
+extern double annotate_font_size;
 const double annotate_font_line_gap = 2;
 const SDK_Core::RGB annotate_line_color = SDK_Core::RGB({ 50, 50, 50 });
 const SDK_Core::RGB annotate_text_color = SDK_Core::NormalColor::GRy;

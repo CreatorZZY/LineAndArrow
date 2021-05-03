@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 LastEditors: George Zhao
-LastEditTime: 2021-05-03 13:54:18
+LastEditTime: 2021-05-03 23:07:32
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -59,7 +59,7 @@ def LindAndArrow():
         with open("./tmp/{}.data".format(filename), "w+") as f:
             f.write(data)
         os.system(
-            f"{path_to_exe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename} -w {request.args['width']}")
+            f"{path_to_exe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename} -w {request.args['width']} -f { '30' if int(request.args['width']) > 30 else '20'}")
         svgdata = str()
         pngdata = str()
         if os.path.exists("./out/img/{}.svg".format(filename)) == False:
