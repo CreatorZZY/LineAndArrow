@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2020-09-21 00:09:26
+ * @LastEditTime: 2021-05-03 13:48:50
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -61,6 +61,7 @@ int main(int argc, char** argv)
     cmdconfig.set_program_name("LineAndArrow");
     cmdconfig.add<std::string>("input", 'i', "Path to Input File", true);
     cmdconfig.add<std::string>("output", 'o', "Name of Output.", true);
+    cmdconfig.add<double>("width", 'w', "Width Of the Arrow", false, 20.0);
     cmdconfig.add("stdout", 's', "Print SVG in STDOUT.");
 
     cmdconfig.add<std::string>("datapath", '\000', "Work Path", false, "./");
@@ -87,12 +88,12 @@ int main(int argc, char** argv)
     auto a = SDK_Dataloader::normalize_data(data);
 
     for (const auto& element : a) {
-        SDK_Draw::arrow(surfacepng, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), 20);
-        SDK_Draw::annotate(surfacepng, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), 20, SDK_Draw::UpandDown(element.startpoint, element.endpoint));
-        SDK_Draw::arrow(surfacepdf, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), 20);
-        SDK_Draw::annotate(surfacepdf, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), 20, SDK_Draw::UpandDown(element.startpoint, element.endpoint));
-        SDK_Draw::arrow(surfacesvg, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), 20);
-        SDK_Draw::annotate(surfacesvg, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), 20, SDK_Draw::UpandDown(element.startpoint, element.endpoint));
+        SDK_Draw::arrow(surfacepng, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), cmdconfig.get<double>("width"));
+        SDK_Draw::annotate(surfacepng, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), cmdconfig.get<double>("width"), SDK_Draw::UpandDown(element.startpoint, element.endpoint));
+        SDK_Draw::arrow(surfacepdf, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), cmdconfig.get<double>("width"));
+        SDK_Draw::annotate(surfacepdf, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), cmdconfig.get<double>("width"), SDK_Draw::UpandDown(element.startpoint, element.endpoint));
+        SDK_Draw::arrow(surfacesvg, element.startpoint, element.endpoint, element.color, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), cmdconfig.get<double>("width"));
+        SDK_Draw::annotate(surfacesvg, (element.startpoint + element.endpoint) / 2, SDK_Core::SIZE2D({ SDK_Draw::PageW, SDK_Draw::PageH }), element.name.c_str(), cmdconfig.get<double>("width"), SDK_Draw::UpandDown(element.startpoint, element.endpoint));
     }
 
     cr::cairo_surface_write_to_png(surfacepng, (filemane + ".png").c_str());

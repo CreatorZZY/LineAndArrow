@@ -1,0 +1,9 @@
+gene1	complement(3668847..3668981)	red
+gene2	complement(3669178..3669507)	blue
+gene3	3669651..3670916	green
+gene4	3670928..3672412	black
+gene5	complement(3672428..3674452)	white
+gene6	complement(3674552..3675280)	purple
+gene7	complement(3675280..3676023)	brown
+gene8	complement(3676052..3676753)	skyblue
+gene9	3676947..3677228	pink

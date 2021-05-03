@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-09-24 19:32:44
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-04-30 19:06:34
+ * @LastEditTime: 2021-05-03 14:59:10
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -60,7 +60,22 @@
               <td>
                 <div>
                   <center>
-                    <input type="button" value="Submit" tabindex="3" onclick="submit_and_('0')" />
+                    <table border="0" style="width: 100%; height: 100%;">
+                      <tr>
+                        <td style="width: 50%; height: 100%;">
+                          <center>
+                            <span>Arrow Weight</span>
+                          </center>
+                        </td>
+                        <td style="width: 50%; height: 100%;"><span id='Widthvalue'>20</span></td>
+                      </tr>
+                      <tr style="width: 100%; height: 100%;">
+                        <td style="width: 100%; height: 100%;" colspan="2">
+                          <input type="range" id="width" value="20" min="1" max="100" step="1" onchange="changeV()"
+                            style="width: 100%; height: 100%;">
+                        </td>
+                      </tr>
+                    </table>
                   </center>
                 </div>
               </td>
@@ -69,11 +84,15 @@
               <td>
                 <div>
                   <center>
-                    Save
-                    <span> </span>
-                    <input type="button" value="Svg" tabindex="4" onclick="submit_and_('1')" />
-                    <span> or </span>
-                    <input type="button" value="Pdf" tabindex="5" onclick="submit_and_('2')" />
+                    <table style="width: 100%; height: 100%;">
+                      <tr>Save</tr>
+                      <tr>
+                        <td><input type="button" value="Svg" tabindex="4" onclick="submit_and_('1')"
+                            style="width: 100%; height: 100%;" /></td>
+                        <td><input type="button" value="Pdf" tabindex="5" onclick="submit_and_('2')"
+                            style="width: 100%; height: 100%;" /></td>
+                      </tr>
+                    </table>
                   </center>
                 </div>
               </td>
@@ -82,7 +101,8 @@
               <td>
                 <div>
                   <center>
-                    <input type="button" value="Clean" tabindex="6" onclick="clean_result()" />
+                    <input type="button" value="Clean" tabindex="6" onclick="clean_result()"
+                      style="width: 100%; height: 100%;" />
                   </center>
                 </div>
               </td>
@@ -91,7 +111,8 @@
               <td>
                 <div>
                   <center>
-                    <input type="button" value="Get Help" tabindex="7" onclick="gethelp()" />
+                    <input type="button" value="Get Help" tabindex="7" onclick="gethelp()"
+                      style="width: 100%; height: 100%;" />
                   </center>
                 </div>
               </td>
@@ -102,13 +123,18 @@
     </div>
   </center>
   <script>
+    function changeV() {
+      document.getElementById('Widthvalue').innerText = document.getElementById('width').value;
+      submit_and_('0');
+    }
+
     function submit_and_(d) {
       if (document.getElementById("rdata").value == "") {
         return;
       }
       iframe_refeash(
         "LineAndArrow?D=" +
-        d +
+        d + "&width=" + document.getElementById('width').value +
         "&Data=" +
         window.btoa(document.getElementById("rdata").value)
       );

@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-16 15:16:27
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-05-01 10:53:20
+ * @LastEditTime: 2021-05-03 14:18:10
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -35,7 +35,7 @@ void annotate(cr::cairo_surface_t* surface, const double& Present, const SDK_Cor
     if (upAndDpwn == false) { // Left
         vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, annotate_font_line_gap + 1.5 * linewidth + arrow_line_gap - extents.y_bearing };
     } else {
-        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, 0.0 - annotate_font_line_gap - arrow_line_gap };
+        vector = { gap + (Present) * (pagesize.W - 2 * gap) - extents.width / 2, 0.0 - annotate_font_line_gap - arrow_line_gap - 1.0 * linewidth - extents.y_bearing };
     }
 
     cr::cairo_set_source_rgb(pan, annotate_text_color.R, annotate_text_color.G, annotate_text_color.B);
