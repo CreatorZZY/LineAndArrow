@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-03-18 11:37:51
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-04-29 13:01:02
+ * @LastEditTime: 2021-05-04 19:14:04
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -37,7 +37,11 @@ std::vector<fdata> readdata(const std::string& pathway)
         std::getline(database, line);
         if (line.empty())
             continue;
-        data.push_back(Reline(line));
+        try {
+            data.push_back(Reline(line));
+        } catch (const std::invalid_argument& e) {
+            throw std::invalid_argument("Error In line: " + line + ";\nErrorInformation:" + e.what());
+        }
     }
     return data;
 }
@@ -69,7 +73,7 @@ std::vector<pdata> normalize_data(const std::vector<fdata>& thefdata)
 
 // ^([A-Za-z0-9]+)\s+([A-Za-z]*)\(*\s*(\d+)..(\d+)\s*\)*\s+(\w*)$
 const SDK_Core::RGB& defaultArrowcolor = SDK_Core::NormalColor::GREEN;
-const std::regex regex("(.+)\\s+([A-Za-z]*)\\(*\\s*(\\d+)..(\\d+)\\s*\\)*\\s+([#A-Za-z0-9]*)\\r*");
+const std::regex regex("(.+)\\s+([A-Za-z]*)\\(*\\s*(\\d+)..(\\d+)\\s*\\)*\\s+([#A-Za-z0-9]*)\\s*");
 SDK_Core::RGB changeCharToRGB(const char* text)
 {
     if (text[0] != '#')

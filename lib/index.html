@@ -2,7 +2,7 @@
  * @Author: George Zhao
  * @Date: 2020-09-24 19:32:44
  * @LastEditors: George Zhao
- * @LastEditTime: 2021-05-03 16:37:51
+ * @LastEditTime: 2021-05-04 19:11:03
  * @Description: 
  * @Email: 2018221138@email.szu.edu.cn
  * @Company: SZU
@@ -123,6 +123,14 @@
     </div>
   </center>
   <script>
+    function utf8_to_b64(str) {
+      return window.btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function b64_to_utf8(str) {
+      return decodeURIComponent(escape(window.atob(str)));
+    }
+
     function changeV() {
       document.getElementById('Widthvalue').innerText = document.getElementById('width').value;
       submit_and_('0');
@@ -136,7 +144,7 @@
         "LineAndArrow?D=" +
         d + "&width=" + document.getElementById('width').value +
         "&Data=" +
-        window.btoa(document.getElementById("rdata").value)
+        window.utf8_to_b64(document.getElementById("rdata").value)
       );
       document.getElementById("inputtitle").style =
         "background-color: #366e9c;";

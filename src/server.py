@@ -2,7 +2,7 @@
 @Author: George Zhao
 @Date: 2020-03-20 15:54:19
 LastEditors: George Zhao
-LastEditTime: 2021-05-03 23:07:32
+LastEditTime: 2021-05-04 19:31:24
 @Description:
 @Email: 2018221138@email.szu.edu.cn
 @Company: SZU
@@ -17,6 +17,7 @@ import os
 import sys
 import time
 import base64
+import subprocess
 
 import argparse
 
@@ -56,14 +57,14 @@ def LindAndArrow():
             return data
         t = hashlib.sha256((data + str(time.time() * 1000000)).encode('utf-8'))
         filename = t.hexdigest()
-        with open("./tmp/{}.data".format(filename), "w+") as f:
+        with open("./tmp/{}.data".format(filename), "w+", encoding='UTF-8') as f:
             f.write(data)
-        os.system(
-            f"{path_to_exe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename} -w {request.args['width']} -f { '30' if int(request.args['width']) > 30 else '20'}")
+        cmdstdout = subprocess.Popen(
+            f"{path_to_exe} --datapath ./ --tmppath ./ -i ./tmp/{filename}.data -o ./out/img/{filename} -w {request.args['width']} -f { '30' if int(request.args['width']) > 30 else '20'}", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        cstderr = cmdstdout.communicate()[1].decode('UTF-8')
+        cmdstdout.wait()
         svgdata = str()
         pngdata = str()
-        if os.path.exists("./out/img/{}.svg".format(filename)) == False:
-            return "Sorry, Error. May Check Your Input."
         with open("./out/img/{}.svg".format(filename)) as f:
             svgdata = f.read()
         with open("./out/img/{}.png".format(filename), 'rb') as f:
@@ -90,7 +91,7 @@ def LindAndArrow():
             return "<img src=\"data:image/png;base64,{}\" style=\"width: 100%; height: 100%;\"/>".format(base64.b64encode(pngdata).decode('utf-8'))
     except BaseException as e:
         print(e)
-        return "Sorry, Error. May Check Your Input.\nError Code: \n" + str(e)
+        return "<h1>Sorry, Error. May Check Your Input.</h1><h1>Serverd Error Code</h1><pre>" + str(e) + "</pre><h1>Cored Program Return</h1><p><pre>" + cstderr + "</pre></p>"
 
 
 def cors_response(res):
