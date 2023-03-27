@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  cdhit-server:
+    image: georgezhao/landa:1.0
+    restart: unless-stopped
+    network_mode: bridge
+    hostname: cdhit-server
