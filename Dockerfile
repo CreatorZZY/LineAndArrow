@@ -24,6 +24,6 @@ RUN make -j
 
 WORKDIR /root/LineAndArrow
 
-EXPOSE 1080
+EXPOSE 80
 
-CMD python3 -u /root/LineAndArrow/src/server.py --port 1080 -e /root/LineAndArrow/build/bin/LineAndArrow
+CMD python3 -u /root/LineAndArrow/src/server.py --port 80 -e /root/LineAndArrow/build/bin/LineAndArrow
