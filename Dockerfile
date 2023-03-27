@@ -2,6 +2,8 @@ FROM ubuntu:20.04
 
 MAINTAINER georgezhao 2018221138@email.szu.edu.cn
 
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.tuna.tsinghua.edu.cn/@g /etc/apt/sources.list
+
 RUN apt-get update -y
 RUN apt-get install -y cmake
 RUN apt-get install -y git
