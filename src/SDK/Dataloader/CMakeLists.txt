@@ -1,5 +1,5 @@
 project(SDK_Dataloader)
-find_library(SDK_Core REQUIRED)
+# find_library(SDK_Core REQUIRED)
 
 # aux_source_directory(. srcf)
 

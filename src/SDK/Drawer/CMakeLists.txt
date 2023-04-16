@@ -1,6 +1,7 @@
 project(SDK_Drawer)
-find_library(cairo REQUIRED)
-find_library(SDK_Core REQUIRED)
+
+# find_library(cairo REQUIRED)
+# find_library(SDK_Core REQUIRED)
 
 # aux_source_directory(. srcf)
 

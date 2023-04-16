@@ -1,6 +1,8 @@
 FROM ubuntu:22.04
 
+WORKDIR /srv/app
 
+ARG DEBIAN_FRONTEND=noninteractive
 ENV export LANG="C.UTF-8" \
     LANGUAGE="en_US:en" \
     LC_CTYPE="C.UTF-8" \
@@ -17,13 +19,12 @@ ENV export LANG="C.UTF-8" \
     LC_IDENTIFICATION="C.UTF-8" \
     LC_ALL=""
 
+# RUN echo -e "APT::Install-Suggests \"0\";\nAPT::Install-Recommends \"0\";" | tee -a /etc/apt/apt.conf.d/01norecommend
 RUN sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" /root/.bashrc; \
-    echo -e "APT::Install-Suggests \"0\";\nAPT::Install-Recommends \"0\";" > /etc/apt/apt.conf.d/01norecommend; \
-    sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list; \
+    sed -i -E 's/[a-z]+\.ubuntu\.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list; \
     apt-get update -y; \
     apt-get install -y cmake gcc g++ libcairo2-dev python3 python3-flask python3-flask-cors;
 
-WORKDIR /srv/app
 
 COPY ./src ./src
 COPY ./include ./include
@@ -31,7 +32,7 @@ COPY ./CMakeLists.txt ./CMakeLists.txt
 COPY ./LICENSE ./LICENSE
 
 RUN mkdir build; cd build; \
-    cmake -DCMAKE_CXX_COMPILER=g++-11 -DCMAKE_C_COMPILER=gcc-11 ..; \
+    cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_C_COMPILER=gcc ..; \
     make -j;
 
 EXPOSE 80
