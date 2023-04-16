@@ -1,6 +1,25 @@
 FROM ubuntu:22.04
 
-RUN sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list; \
+
+ENV export LANG="C.UTF-8" \
+    LANGUAGE="en_US:en" \
+    LC_CTYPE="C.UTF-8" \
+    LC_NUMERIC="C.UTF-8" \
+    LC_TIME="C.UTF-8" \
+    LC_COLLATE="C.UTF-8" \
+    LC_MONETARY="C.UTF-8" \
+    LC_MESSAGES="C.UTF-8" \
+    LC_PAPER="C.UTF-8" \
+    LC_NAME="C.UTF-8" \
+    LC_ADDRESS="C.UTF-8" \
+    LC_TELEPHONE="C.UTF-8" \
+    LC_MEASUREMENT="C.UTF-8" \
+    LC_IDENTIFICATION="C.UTF-8" \
+    LC_ALL=""
+
+RUN sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" /root/.bashrc; \
+    echo -e "APT::Install-Suggests \"0\";\nAPT::Install-Recommends \"0\";" > /etc/apt/apt.conf.d/01norecommend; \
+    sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list; \
     apt-get update -y; \
     apt-get install -y cmake gcc g++ libcairo2-dev python3 python3-pip python3-flask python3-flask-cors;
 
