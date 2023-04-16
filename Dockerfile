@@ -21,7 +21,7 @@ RUN sed -i "s/#force_color_prompt=yes/force_color_prompt=yes/g" /root/.bashrc; \
     echo -e "APT::Install-Suggests \"0\";\nAPT::Install-Recommends \"0\";" > /etc/apt/apt.conf.d/01norecommend; \
     sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list; \
     apt-get update -y; \
-    apt-get install -y cmake gcc g++ libcairo2-dev python3 python3-pip python3-flask python3-flask-cors;
+    apt-get install -y cmake gcc g++ libcairo2-dev python3 python3-flask python3-flask-cors;
 
 WORKDIR /srv/app
 
