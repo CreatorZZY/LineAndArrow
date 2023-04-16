@@ -1,31 +1,22 @@
 FROM ubuntu:22.04
 
-MAINTAINER georgezhao 2018221138@email.szu.edu.cn
+RUN sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list; \
+    apt-get update -y; \
+    apt-get install -y cmake gcc-10 g++-10 libcairo2-dev python3 python3-pip; \
+    pip3 install flask flask_cors;
 
-RUN sed -i s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g /etc/apt/sources.list
+WORKDIR /srv/app
 
-RUN apt-get update -y
-RUN apt-get install -y cmake
-RUN apt-get install -y git
-RUN apt-get install -y gcc-10
-RUN apt-get install -y g++-10
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
-RUN apt-get install -y libcairo2-dev
+COPY ./src ./src
+COPY ./lib ./lib
+COPY ./include ./include
+COPY ./CMakeLists.txt ./CMakeLists.txt
+COPY ./LICENSE ./LICENSE
 
-RUN pip3 install flask
-RUN pip3 install flask_cors
-
-WORKDIR /root
-RUN git clone https://github.com/CreatorZZY/LineAndArrow.git
-WORKDIR /root/LineAndArrow
-RUN mkdir build
-WORKDIR /root/LineAndArrow/build
-RUN cmake -DCMAKE_CXX_COMPILER=g++-10 -DCMAKE_C_COMPILER=gcc-10 ..
-RUN make -j
-
-WORKDIR /root/LineAndArrow
+RUN mkdir build; cd build; \
+    cmake -DCMAKE_CXX_COMPILER=g++-10 -DCMAKE_C_COMPILER=gcc-10 ..; \
+    make -j;
 
 EXPOSE 80
 
-CMD python3 -u /root/LineAndArrow/src/server.py --port 80 -e /root/LineAndArrow/build/bin/LineAndArrow
+CMD python3 -u src/server.py --port 80 -e ./build/bin/LineAndArrow

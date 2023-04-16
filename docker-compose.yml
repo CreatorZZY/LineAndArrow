@@ -1,8 +1,20 @@
 version: "3"
 
 services:
-  cdhit-server:
+  lineandarrow:
+    container_name: LineandArrow
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      labels:
+        com.example.description: "LineandArrow"
+        com.example.department: "HCD Lab"
+        com.example.label-with-empty-value: ""
     image: georgezhao/landa:1.0
+    volumes:
+      - ./out:/srv/app/out
+    storage_opt:
+      size: "20G"
     restart: unless-stopped
     network_mode: bridge
-    hostname: cdhit-server
+    hostname: lineandarrow
