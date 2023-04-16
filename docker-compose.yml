@@ -13,6 +13,7 @@ services:
     image: georgezhao/landa:1.0
     volumes:
       - ./out:/srv/app/out
+      - ./lib:/srv/app/lib
     storage_opt:
       size: "20G"
     restart: unless-stopped
